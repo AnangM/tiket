@@ -5,7 +5,7 @@
  */
 
 
- import com.sun.glass.events.KeyEvent;
+import java.awt.event.KeyEvent;
 import java.awt.Desktop;
 import java.awt.Toolkit;
 import java.awt.datatransfer.Clipboard;
@@ -28,7 +28,36 @@ public class login extends javax.swing.JFrame {
      * Creates new form home
      */
     public login() {
+        initComponents();
+        conn.openDB();
     }
+    
+    Koneksi conn = new Koneksi();
+    ResultSet rs = null;
+    
+    void Login(){
+       String uname = jUname.getText();
+       String upwd = jPass.getText();       
+       try{
+       Statement stm = conn.Con.createStatement();
+       rs= stm.executeQuery("SELECT * FROM tbladmin WHERE uname ='" +uname+"' AND upwd ='" +upwd+"'");
+       if(rs.next()){
+           String un,up;
+           un = rs.getString("uname");
+           up = rs.getString("upwd");
+           if(up.equals(upwd)&&un.equals(uname)){
+           JOptionPane.showMessageDialog(null, "Welcome Admin!");
+           new home1().setVisible(true);
+           this.hide();
+           }else{
+           JOptionPane.showMessageDialog(null, "BYPAS ANJING!");
+           }       }
+       else{
+           JOptionPane.showMessageDialog(null, "Incorrect Username or Password");
+       }    }
+       catch(Exception e){
+           System.out.println(e);
+       }    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -43,7 +72,6 @@ public class login extends javax.swing.JFrame {
         bg = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        icon = new javax.swing.JLabel();
         login = new javax.swing.JLabel();
         jUname = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
@@ -74,9 +102,6 @@ public class login extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Charlemagne Std", 0, 24)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 60, 270, 410));
-
-        icon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/kereta/avatar2-removebg.png"))); // NOI18N
-        jPanel2.add(icon, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 140, 110, 120));
 
         bg.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 140, 410));
 
@@ -133,6 +158,7 @@ public class login extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jToggleButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton1ActionPerformed
+        /*
         String username="Kereta";
         String password="api123";
         String kosongusername="";
@@ -151,7 +177,10 @@ public class login extends javax.swing.JFrame {
         jUname.requestFocus();
         
            
-        }        // TODO add your handling code here:
+        } */
+        // TODO add your handling code here:
+        
+        Login();
     }//GEN-LAST:event_jToggleButton1ActionPerformed
 
     private void jUnameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jUnameActionPerformed
@@ -202,7 +231,6 @@ public class login extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel bg;
-    private javax.swing.JLabel icon;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
