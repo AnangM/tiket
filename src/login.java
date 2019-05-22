@@ -78,6 +78,8 @@ public class login extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jToggleButton1 = new javax.swing.JToggleButton();
         jPass = new javax.swing.JPasswordField();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -139,6 +141,18 @@ public class login extends javax.swing.JFrame {
         });
         bg.add(jPass, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 240, 170, 30));
 
+        jLabel4.setText("Belum punya akun?");
+        bg.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 370, -1, -1));
+
+        jLabel5.setForeground(new java.awt.Color(0, 0, 255));
+        jLabel5.setText("Register!");
+        jLabel5.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel5MouseClicked(evt);
+            }
+        });
+        bg.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 370, -1, -1));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -191,6 +205,12 @@ public class login extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jPassActionPerformed
 
+    private void jLabel5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel5MouseClicked
+         new Register().setVisible(true);
+         this.setVisible(false);
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jLabel5MouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -234,6 +254,8 @@ public class login extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPasswordField jPass;
